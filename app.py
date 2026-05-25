@@ -7,9 +7,16 @@ st.title("NYC Airbnb Listings Analysis")
 pdf = pd.read_csv("airbnb_clean.csv")
 
 # Sidebar filter
+boroughs = (
+    pdf["neighbourhood_group"]
+    .dropna()
+    .astype(str)
+    .unique()
+)
+
 borough = st.sidebar.selectbox(
     "Select Borough",
-    sorted(pdf["neighbourhood_group"].unique())
+    sorted(boroughs)
 )
 
 # Filter data
